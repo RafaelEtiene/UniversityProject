@@ -6,13 +6,13 @@ using UniversityAPI.Models;
 
 namespace UniversityAPI.Data
 {
-    public partial class universityContext : DbContext
+    public partial class UniversityContext : DbContext
     {
-        public universityContext()
+        public UniversityContext()
         {
         }
 
-        public universityContext(DbContextOptions<universityContext> options)
+        public UniversityContext(DbContextOptions<universityContext> options)
             : base(options)
         {
         }

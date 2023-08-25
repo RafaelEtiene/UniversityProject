@@ -10,4 +10,5 @@ namespace UniversityAPI.Models
         public double Price { get; set; }
         public int IdTeacher { get; set; }
     }
+
 }

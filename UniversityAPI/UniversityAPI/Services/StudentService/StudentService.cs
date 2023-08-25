@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UniversityAPI.Data;
 using UniversityAPI.Models;
 
 namespace UniversityAPI.Services.StudentService
 {
     public class StudentService : IStudentService
     {
-        private readonly universityContext _context;
+        private readonly UniversityContext _context;
 
-        public StudentService(universityContext context)
+        public StudentService(UniversityContext context)
         {
             _context = context;
         }

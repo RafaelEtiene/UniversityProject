@@ -1,26 +1,26 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UniversityAPI.Models;
-using UniversityAPI.Services.StudentService;
+using UniversityAPI.Services.CourseService;
 
 namespace UniversityAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentController : ControllerBase
+    public class CourseController : ControllerBase
     {
-        private readonly IStudentService _studentService;
-        public StudentController(IStudentService studentService)
+        private readonly ICourseService _courseService;
+        public CourseController(ICourseService courseService)
         {
-            _studentService = studentService;
+            _courseService = courseService;
         }
         [HttpGet]
-        [Route("GetAllStudents")]
-        public async Task<ActionResult<List<Student>>> GetAllStudents()
+        [Route("GetAllCourses")]
+        public async Task<ActionResult<List<Course>>> GetAllCourses()
         {
             try
             {
-                var result = await _studentService.GetAllStudents();
+                var result = await _courseService.GetAllCourses();
                 return Ok(result);
             }
             catch(Exception e)
@@ -30,12 +30,12 @@ namespace UniversityAPI.Controllers
         }
 
         [HttpGet]
-        [Route("GetSingleStudent/{id}")]
-        public async Task<ActionResult<Student>> GetSingleStudent(int id)
+        [Route("GetSingleCourse/{id}")]
+        public async Task<ActionResult<Course>> GetSingleCourse(int id)
         {
             try
             {
-                var result = await _studentService.GetSingleStudent(id);
+                var result = await _courseService.GetSingleCourse(id);
                 return Ok(result);
             }
             catch (Exception e)
@@ -45,12 +45,12 @@ namespace UniversityAPI.Controllers
         }
 
         [HttpPost]
-        [Route("InsertStudent")]
-        public async Task<IActionResult> InsertStudent(Student request)
+        [Route("InsertCourse")]
+        public async Task<IActionResult> InsertCourse(Course request)
         {
             try
             {
-                await _studentService.InsertStudent(request);
+                await _courseService.InsertCourse(request);
                 return Ok();
             }
             catch (Exception e)
@@ -60,12 +60,12 @@ namespace UniversityAPI.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateStudent")]
-        public async Task<IActionResult> UpdateStudent(Student request)
+        [Route("UpdateCourse")]
+        public async Task<IActionResult> UpdateCourse(Course request)
         {
             try
             {
-                await _studentService.UpdateStudent(request);
+                await _courseService.UpdateCourse(request);
                 return Ok();
             }
             catch (Exception e)
@@ -75,12 +75,12 @@ namespace UniversityAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteStudent/{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
+        [Route("DeleteCourse/{id}")]
+        public async Task<IActionResult> DeleteCourse(int id)
         {
             try
             {
-                await _studentService.DeleteStudent(id);
+                await _courseService.DeleteCourse(id);
                 return Ok();
             }
             catch (Exception e)
