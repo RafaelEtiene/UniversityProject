@@ -13,5 +13,7 @@ namespace UniversityAPI.Services.CourseService
         Task UpdateCourse(Course request);
 
         Task DeleteCourse(int id);
+
+        Task<double> GetPriceAverage();
     }
 }

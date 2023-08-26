@@ -96,7 +96,7 @@ namespace UniversityAPI.Data
                     .HasColumnName("name");
 
                 entity.Property(e => e.Phone)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("varchar(45)")
                     .HasColumnName("phone");
             });
 

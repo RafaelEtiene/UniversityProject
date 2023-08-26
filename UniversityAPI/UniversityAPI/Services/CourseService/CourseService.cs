@@ -75,7 +75,6 @@ namespace UniversityAPI.Services.CourseService
             }
         }
 
-
         public async Task DeleteCourse(int id)
         {
             try
@@ -92,6 +91,24 @@ namespace UniversityAPI.Services.CourseService
             catch (Exception e)
             {
                 throw new Exception("An error has ocurred when removing course. " + e.Message);
+            }
+        }
+
+        public async Task<double> GetPriceAverage()
+        {
+            try
+            {
+                var prices = await _context.Courses.Select(c => c.Price).ToListAsync();
+
+                if (prices is null)
+                    throw new Exception("No prices were found");
+
+                return (prices.Sum()) / (prices.Count());
+            }
+            catch (Exception e)
+            {
+                throw new Exception("An error has ocurred when get price average of courses. " + e.Message);
+
             }
         }
 

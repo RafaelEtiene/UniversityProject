@@ -89,5 +89,20 @@ namespace UniversityAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetPriceAverage")]
+        public async Task<ActionResult<double>> GetPriceAverage()
+        {
+            try
+            {
+                var result = await _courseService.GetPriceAverage();
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

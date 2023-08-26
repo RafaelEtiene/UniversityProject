@@ -11,6 +11,6 @@ namespace UniversityAPI.Models
         public string Gender { get; set; } = null!;
         public int IdCourse { get; set; }
         public string Email { get; set; } = null!;
-        public int Phone { get; set; }
+        public string Phone { get; set; }
     }
 }
