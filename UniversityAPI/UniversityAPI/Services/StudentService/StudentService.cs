@@ -64,6 +64,7 @@ namespace UniversityAPI.Services.StudentService
 
                 if (student is null)
                     throw new Exception("No students were found");
+
                 _context.Students.Update(request);
 
                 await _context.SaveChangesAsync();

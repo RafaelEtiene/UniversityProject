@@ -75,6 +75,10 @@ namespace UniversityAPI.Data
                     .HasColumnType("int(11) unsigned")
                     .HasColumnName("idStudent");
 
+                entity.Property(e => e.RegistrationDate)
+                .HasColumnType("datetime")
+                .HasColumnName("registrationDate");
+
                 entity.Property(e => e.Age)
                     .HasColumnType("int(11)")
                     .HasColumnName("age");
