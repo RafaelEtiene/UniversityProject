@@ -65,7 +65,9 @@ namespace UniversityAPI.Services.CourseService
                 if (course is null)
                     throw new Exception("No course were found");
 
-                _context.Courses.Update(request);
+                course.IdTeacher = request.IdTeacher;
+                course.Name = request.Name;
+                course.Price = request.Price;
 
                 await _context.SaveChangesAsync();
             }

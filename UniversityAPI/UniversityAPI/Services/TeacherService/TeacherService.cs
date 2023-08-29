@@ -65,7 +65,13 @@ namespace UniversityAPI.Services.TeacherService
                 if (teacher is null)
                     throw new Exception("No teacher were found");
 
-                _context.Teachers.Update(teacher);
+                teacher.Name = request.Name;
+                teacher.Phone = request.Phone;
+                teacher.Gender = request.Gender;
+                teacher.Age = request.Age;
+                teacher.Email = request.Email;
+
+                await _context.SaveChangesAsync();
             }
             catch(Exception e)
             {
