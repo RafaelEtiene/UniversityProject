@@ -91,7 +91,7 @@ namespace UniversityAPI.Services.TeacherService
                 _context.Teachers.Remove(teacher);
 
                 await _context.SaveChangesAsync();
-            }
+            } 
             catch (Exception e)
             {
                 throw new Exception("An error has ocurred when removing teacher. " + e.Message);

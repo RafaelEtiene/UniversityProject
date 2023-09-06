@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,13 @@ import { MatSortModule } from '@angular/material/sort';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    NgbModule, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule
+    NgbModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
