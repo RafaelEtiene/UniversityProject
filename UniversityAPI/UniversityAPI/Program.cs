@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UniversityAPI.Data;
 using UniversityAPI.Models;
+using UniversityAPI.Models.Mapper;
 using UniversityAPI.Services.CourseService;
 using UniversityAPI.Services.StudentService;
 using UniversityAPI.Services.TeacherService;
@@ -20,6 +22,7 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 
+builder.Services.AddAutoMapper(typeof(StudentProfile));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

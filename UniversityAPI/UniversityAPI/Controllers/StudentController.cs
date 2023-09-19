@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UniversityAPI.Models;
+using UniversityAPI.Models.ViewModel;
 using UniversityAPI.Services.StudentService;
 
 namespace UniversityAPI.Controllers
@@ -16,11 +17,11 @@ namespace UniversityAPI.Controllers
         }
         [HttpGet]
         [Route("GetAllStudents")]
-        public async Task<ActionResult<List<Student>>> GetAllStudents()
+        public async Task<ActionResult<List<Student>>> GetAllStudents([FromQuery]FilterStudentViewModel request)
         {
             try
             {
-                var result = await _studentService.GetAllStudents();
+                var result = await _studentService.GetAllStudents(request);
                 return Ok(result);
             }
             catch(Exception e)
@@ -61,7 +62,7 @@ namespace UniversityAPI.Controllers
 
         [HttpPut]
         [Route("UpdateStudent")]
-        public async Task<IActionResult> UpdateStudent(Student request)
+        public async Task<IActionResult> UpdateStudent(StudentViewModel request)
         {
             try
             {

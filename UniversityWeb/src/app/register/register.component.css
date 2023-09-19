@@ -1,12 +1,22 @@
-
-
-.grid-container {
-  margin-left: 200px;
+* {
+  margin-left: 100px;
 }
 
+form {
+  margin-bottom: 30px;
+}
+.buttons{
+  display: inline-block;
+}
+h2{
+  text-align: left;
+  margin-left: 100px;
+}
+
+
 .datatable {
+  margin-left: 200px;
   display: flex;
-  justify-content: end;
   padding: 50px;
   width: auto;
 }
