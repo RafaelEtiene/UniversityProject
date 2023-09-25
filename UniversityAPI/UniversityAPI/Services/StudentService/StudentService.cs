@@ -96,11 +96,12 @@ namespace UniversityAPI.Services.StudentService
             }
         }
 
-        public async Task InsertStudent(Student request)
+        public async Task InsertStudent(StudentViewModel request)
         {
             try
             {
-                _context.Students.Add(request);
+                var student = _mapper.Map<StudentViewModel, Student>(request);
+                _context.Students.Add(student);
 
                 await _context.SaveChangesAsync();
             }

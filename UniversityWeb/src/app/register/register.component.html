@@ -1,57 +1,95 @@
 <div class="header">
   <h2>Students</h2>
 </div>
-<form>
-  <h3>Filter</h3>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label>Initial Date</label>
-      <input type="date" class="form-control" placeholder="Inital Date" [(ngModel)]="initialDate" [ngModelOptions]="{standalone: true}"/>
+<div *ngIf="!showTemplate">
+  <form class="filter">
+    <h3>Filter</h3>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Initial Date</label>
+        <input type="date" class="form-control" placeholder="Inital Date" [(ngModel)]="initialDate" [ngModelOptions]="{standalone: true}"/>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Final Date</label>
+        <input type="date" class="form-control" placeholder="Final Date" [(ngModel)]="finalDate" [ngModelOptions]="{standalone: true}"/>
+      </div>
     </div>
-    <div class="form-group col-md-4">
-      <label>Final Date</label>
-      <input type="date" class="form-control" placeholder="Final Date" [(ngModel)]="finalDate" [ngModelOptions]="{standalone: true}"/>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Email</label>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"/>
+      </div>
     </div>
+    <div class="buttons">
+      <button class="btn btn-primary" type="submit" (click)="GetAllStudents()">Search</button>
+      <button class="btn btn-secondary" type="submit" (click)="AddStudent()">Add Student</button>
+    </div>
+  </form>
+  <div class="container">
+      <div class="row">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Registration Date</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students">
+              <th>{{student.name}}</th>
+              <td>{{student.registrationDate}}</td>
+              <td>{{student.age}}</td>
+              <td>{{student.email}}</td>
+              <td>
+                <button class="btn btn-info">Update</button>
+                <button class="btn btn-info">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label>Name</label>
-      <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
-    </div>
-    <div class="form-group col-md-4">
-      <label>Email</label>
-      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"/>
-    </div>
+</div>
+
+<div *ngIf="showTemplate"  class="template">
+  <div class="form-group">
+    <label for="disabledTextInput">Name</label>
+    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" [(ngModel)]="student.name">
   </div>
-  <div class="buttons">
-    <button class="btn btn-primary" type="submit" (click)="GetAllStudents()">Search</button>
-    <button class="btn btn-secondary" type="submit">Add Student</button>
+  <div class="form-group">
+    <label for="disabledSelect">Age</label>
+    <input type="number" class="form-control" [(ngModel)]="student.age"/>
   </div>
-</form>
-<div class="container">
-    <div class="row">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Registration Date</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let student of students">
-            <th>{{student.name}}</th>
-            <td>{{student.registrationDate}}</td>
-            <td>{{student.age}}</td>
-            <td>{{student.email}}</td>
-            <td>
-              <button class="btn btn-info">Update</button>
-              <button class="btn btn-info">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="form-group">
+    <label for="disabledSelect">Gender</label>
+    <input type="text" class="form-control" [(ngModel)]="student.gender"/>
+  </div>
+  <div class="form-group">
+    <label>Course</label>
+    <ng-select [items]="courses" 
+           bindLabel="name" 
+           bindValue="idCourse" 
+           [(ngModel)]="courseSelected">
+    </ng-select>
+  </div>
+  <div class="form-group">
+    <label for="disabledSelect">Registration Date</label>
+    <input type="datetime-local" class="form-control" [(ngModel)]="student.registrationDate"/>
+  </div>
+  <div class="form-group">
+    <label for="disabledSelect">Email</label>
+    <input type="email" class="form-control" [(ngModel)]="student.email"/>
+  </div>
+  <div class="form-group">
+    <label for="disabledSelect">Phone number</label>
+    <input type="tel" class="form-control" [(ngModel)]="student.phone"/>
+  </div>
+    <button type="submit" class="btn btn-primary save" (click)="SaveStudent()">Save</button>
 </div>

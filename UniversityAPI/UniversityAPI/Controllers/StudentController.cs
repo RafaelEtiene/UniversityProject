@@ -47,7 +47,7 @@ namespace UniversityAPI.Controllers
 
         [HttpPost]
         [Route("InsertStudent")]
-        public async Task<IActionResult> InsertStudent(Student request)
+        public async Task<IActionResult> InsertStudent([FromBody]StudentViewModel request)
         {
             try
             {

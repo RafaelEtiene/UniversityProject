@@ -10,7 +10,7 @@ namespace UniversityAPI.Services.StudentService
 
         Task<Student> GetSingleStudent(int id);
 
-        Task InsertStudent(Student request);
+        Task InsertStudent(StudentViewModel request);
 
         Task UpdateStudent(StudentViewModel request);
 
