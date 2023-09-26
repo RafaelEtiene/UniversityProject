@@ -6,8 +6,12 @@
     <mat-toolbar>University</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="/dashboard">Dashboard</a>
-      <a mat-list-item href="/register">Register</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item [matMenuTriggerFor]="register">Register</a>
+      <mat-menu #register="matMenu">
+        <a mat-menu-item href="/register/student">Student</a>
+        <a mat-menu-item href="/register/teacher">Teacher</a>
+        <a mat-menu-item href="/register/course">Course</a>
+      </mat-menu>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

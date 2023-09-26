@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
+import { StudentComponent } from './register/student/student.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', children: [
+    {path: 'student', component: StudentComponent}
+  ]}
 ];
 
 @NgModule({

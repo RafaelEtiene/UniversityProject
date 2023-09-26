@@ -8,12 +8,12 @@ import { FilterViewModel } from 'src/viewmodel/FilterViewModel';
 import { StudentViewModel } from 'src/viewmodel/StudentViewModel';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-student',
+  templateUrl: './student.component.html',
+  styleUrls: ['./student.component.css']
 })
 
-export class RegisterComponent implements OnInit {  
+export class StudentComponent implements OnInit {  
   students: StudentViewModel[] = [];
   email: string = null!;
   name: string = null!;
@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   genderSelected: string = "";
   showTemplate: boolean = false;
   student: StudentViewModel = null!;
+
   @ViewChild('myTemplate') myTemplateRef!: TemplateRef<any>;
 
   constructor(private studentService: StudentsService, 
@@ -67,7 +68,18 @@ export class RegisterComponent implements OnInit {
     }
   }
   public SaveStudent(){
-    this.studentService.InsertStudent(this.student);
-    console.log(this.student)
+    var insertStudent: StudentViewModel = {
+      idStudent: this.student.idStudent,
+      idCourse: this.courseSelected,
+      name: this.student.name,
+      email: this.student.email,
+      age: this.student.age,
+      gender: this.student.gender,
+      phone: this.student.phone,
+      registrationDate: this.student.registrationDate
+    }
+    this.studentService.InsertStudent(insertStudent).subscribe();
+    this.GetAllCourses();
+    this.showTemplate = false;
   }
 }

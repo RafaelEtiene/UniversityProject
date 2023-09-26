@@ -31,7 +31,7 @@ export class StudentsService {
     (`${this.basePath}/Student/GetAllStudents`, {params: params})
   }
 
-  public InsertStudent(student: StudentViewModel){
-    return this.httpClient.post<StudentViewModel>(`${student}/Student/InsertStudent`, student)
+  public InsertStudent(student: StudentViewModel) : Observable<any>{
+    return this.httpClient.post<any>(`${this.basePath}/Student/InsertStudent`, student)
   }
 }
