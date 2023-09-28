@@ -6,7 +6,7 @@ namespace UniversityAPI.Models
     public partial class Student
     {
         public uint IdStudent { get; set; }
-        public DateTime? RegistrationDate { get; set; } = DateTime.Now;
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
         public string Name { get; set; } = null!;
         public int Age { get; set; }
         public string Gender { get; set; } = null!;

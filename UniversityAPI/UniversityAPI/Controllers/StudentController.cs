@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UniversityAPI.Models;
 using UniversityAPI.Models.ViewModel;
 using UniversityAPI.Services.StudentService;
@@ -15,9 +14,10 @@ namespace UniversityAPI.Controllers
         {
             _studentService = studentService;
         }
+
         [HttpGet]
         [Route("GetAllStudents")]
-        public async Task<ActionResult<List<Student>>> GetAllStudents([FromQuery]FilterStudentViewModel request)
+        public async Task<IActionResult> GetAllStudents([FromQuery]FilterStudentViewModel request)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace UniversityAPI.Controllers
 
         [HttpGet]
         [Route("GetSingleStudent/{id}")]
-        public async Task<ActionResult<Student>> GetSingleStudent(int id)
+        public async Task<IActionResult> GetSingleStudent(int id)
         {
             try
             {
@@ -90,5 +90,19 @@ namespace UniversityAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetStudentsAnalyticsInfo")]
+        public async Task<IActionResult> GetStudentsAnalyticsInfo()
+        {
+            try
+            {
+                var result = await _studentService.GetStudentsAnalyticsInfo();
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

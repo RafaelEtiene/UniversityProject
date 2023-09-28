@@ -125,7 +125,7 @@ namespace UniversityAPI.Services.StudentService
                 if(!string.IsNullOrEmpty(studentRequest.Name))
                     student.Name = studentRequest.Name;
 
-                if (studentRequest.RegistrationDate.HasValue)
+                if (studentRequest.RegistrationDate != null)
                     student.RegistrationDate = studentRequest.RegistrationDate;
 
                 if(!string.IsNullOrEmpty(studentRequest.Phone))
@@ -168,6 +168,25 @@ namespace UniversityAPI.Services.StudentService
             catch (Exception e)
             {
                 throw new Exception("An error has ocurred when removing student. " + e.Message);
+            }
+        }
+
+        public async Task<StudentsAnalyticsInfo> GetStudentsAnalyticsInfo()
+        {
+            try
+            {
+                var studentsCount = await _context.Students.CountAsync();
+                var lastRegisteredCount = await _context.Students.Where(s => s.RegistrationDate.Month == DateTime.Now.Month).CountAsync();
+
+                return new StudentsAnalyticsInfo
+                {
+                    StudentsCount = studentsCount,
+                    LastRegisteredStudents = lastRegisteredCount
+                };
+            }
+            catch
+            {
+                throw;
             }
         }
 
