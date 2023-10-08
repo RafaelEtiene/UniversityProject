@@ -1,21 +1,20 @@
-.grid-container {
-  margin: 20px;
+* {
+  left: 12.5%;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+.infoStudent{
+  margin-left: 10rem;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
+.card{
+  width: 200px;
+  height: 110px;
 }
 
-.dashboard-card-content {
-  text-align: center;
+#numbers {
+}
+
+h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
 }

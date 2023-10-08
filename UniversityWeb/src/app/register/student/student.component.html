@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!showTemplate">
   <form class="filter">
-    <h3>Filter</h3>
+    <h2>Filter</h2>
     <div class="form-row">
       <div class="form-group col-md-4">
         <label>Initial Date</label>
@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="buttons">
-      <button class="btn btn-primary" type="submit" (click)="GetAllStudents()">Search</button>
-      <button class="btn btn-secondary" type="submit" (click)="AddStudent()">Add Student</button>
+      <button class="btn btn-primary" type="submit" (click)="getAllStudents()">Search</button>
+      <button class="btn btn-secondary" type="submit" (click)="addStudent()" style="margin-left: 5px;">Add Student</button>
     </div>
   </form>
   <div class="container">
@@ -48,7 +48,7 @@
               <td>{{student.age}}</td>
               <td>{{student.email}}</td>
               <td>
-                <button class="btn btn-info">Update</button>
+                <button class="btn btn-info" (click)="getStudentById(student.idStudent)">Update</button>
                 <button class="btn btn-info">Delete</button>
               </td>
             </tr>
@@ -59,37 +59,48 @@
 </div>
 
 <div *ngIf="showTemplate"  class="template">
-  <div class="form-group">
-    <label for="disabledTextInput">Name</label>
-    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" [(ngModel)]="student.name">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="disabledTextInput">Name</label>
+      <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" [(ngModel)]="student.name">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="disabledSelect">Age</label>
+      <input type="number" class="form-control" [(ngModel)]="student.age"/>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="disabledSelect">Age</label>
-    <input type="number" class="form-control" [(ngModel)]="student.age"/>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="disabledSelect">Gender</label>
+      <input type="text" class="form-control" [(ngModel)]="student.gender"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label>Course</label>
+      <ng-select [items]="courses" 
+             bindLabel="name" 
+             bindValue="idCourse" 
+             [(ngModel)]="student.idCourse">
+      </ng-select>
+    </div>  
   </div>
-  <div class="form-group">
-    <label for="disabledSelect">Gender</label>
-    <input type="text" class="form-control" [(ngModel)]="student.gender"/>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="disabledSelect">Registration Date</label>
+      <input type="datetime-local" class="form-control" [(ngModel)]="student.registrationDate"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="disabledSelect">Email</label>
+      <input type="email" class="form-control" [(ngModel)]="student.email"/>
+    </div>
   </div>
-  <div class="form-group">
-    <label>Course</label>
-    <ng-select [items]="courses" 
-           bindLabel="name" 
-           bindValue="idCourse" 
-           [(ngModel)]="courseSelected">
-    </ng-select>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="disabledSelect">Phone number</label>
+      <input type="tel" class="form-control" [(ngModel)]="student.phone"/>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="disabledSelect">Registration Date</label>
-    <input type="datetime-local" class="form-control" [(ngModel)]="student.registrationDate"/>
+  <div class="btnForm">
+    <button type="submit" class="btn btn-primary" (click)="saveStudent()">Save</button>
+    <button type="submit" class="btn btn-danger" style="margin-left: 5px;" (click)="cancel()">Cancel</button>
   </div>
-  <div class="form-group">
-    <label for="disabledSelect">Email</label>
-    <input type="email" class="form-control" [(ngModel)]="student.email"/>
-  </div>
-  <div class="form-group">
-    <label for="disabledSelect">Phone number</label>
-    <input type="tel" class="form-control" [(ngModel)]="student.phone"/>
-  </div>
-    <button type="submit" class="btn btn-primary save" (click)="SaveStudent()">Save</button>
 </div>

@@ -32,10 +32,10 @@ export class StudentComponent implements OnInit {
     private courseService: CourseService) {
   }
   ngOnInit(): void {
-    this.GetAllCourses();
+    this.getAllCourses();
   }
 
-  public GetAllStudents(){
+  public getAllStudents(){
     let filter: FilterViewModel = {
       email : this.email,
       finalDate: this.finalDate,
@@ -48,13 +48,25 @@ export class StudentComponent implements OnInit {
       }
     );    
   }
-  public GetAllCourses(){
+  public getAllCourses(){
     return this.courseService.GetAllCourses()
     .subscribe(result => {
       this.courses = result;
     })
   }
-  public AddStudent(){
+
+  public getStudentById(idStudent: number){
+    this.showTemplate = true;
+    return this.studentService.GetStudentById(idStudent).subscribe(r => {
+      this.student = r;
+    })
+  }
+
+  public cancel(){
+    this.showTemplate = false;
+  }
+
+  public addStudent(){
     this.showTemplate = true;
     this.student = {
       idStudent: 0,
@@ -67,19 +79,15 @@ export class StudentComponent implements OnInit {
       registrationDate: new Date
     }
   }
-  public SaveStudent(){
-    var insertStudent: StudentViewModel = {
-      idStudent: this.student.idStudent,
-      idCourse: this.courseSelected,
-      name: this.student.name,
-      email: this.student.email,
-      age: this.student.age,
-      gender: this.student.gender,
-      phone: this.student.phone,
-      registrationDate: this.student.registrationDate
+
+  public saveStudent(){
+    if(this.student.idStudent != 0){
+      this.studentService.UpdateStudent(this.student).subscribe();
+    } 
+    else{
+      this.studentService.InsertStudent(this.student).subscribe();
     }
-    this.studentService.InsertStudent(insertStudent).subscribe();
-    this.GetAllCourses();
     this.showTemplate = false;
+    this.getAllCourses();
   }
 }

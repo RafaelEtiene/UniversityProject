@@ -79,7 +79,7 @@ namespace UniversityAPI.Services.StudentService
             }
         }
 
-        public async Task<Student> GetSingleStudent(int id)
+        public async Task<Student> GetSingleStudent(uint id)
         {
             try
             {

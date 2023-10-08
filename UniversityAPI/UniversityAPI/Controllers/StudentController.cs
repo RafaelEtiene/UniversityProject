@@ -32,7 +32,7 @@ namespace UniversityAPI.Controllers
 
         [HttpGet]
         [Route("GetSingleStudent/{id}")]
-        public async Task<IActionResult> GetSingleStudent(int id)
+        public async Task<IActionResult> GetSingleStudent(uint id)
         {
             try
             {

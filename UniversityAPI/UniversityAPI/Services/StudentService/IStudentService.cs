@@ -8,7 +8,7 @@ namespace UniversityAPI.Services.StudentService
     {
         Task<List<Student>> GetAllStudents(FilterStudentViewModel request);
 
-        Task<Student> GetSingleStudent(int id);
+        Task<Student> GetSingleStudent(uint id);
 
         Task InsertStudent(StudentViewModel request);
 

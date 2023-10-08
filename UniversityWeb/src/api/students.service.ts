@@ -34,4 +34,12 @@ export class StudentsService {
   public InsertStudent(student: StudentViewModel) : Observable<any>{
     return this.httpClient.post<any>(`${this.basePath}/Student/InsertStudent`, student)
   }
+
+  public GetStudentById(idStudent: number) : Observable<StudentViewModel>{
+    return this.httpClient.get<StudentViewModel>(`${this.basePath}/Student/GetSingleStudent/${idStudent}`)
+  }
+
+  public UpdateStudent(student: StudentViewModel) : Observable<any>{
+    return this.httpClient.put<any>(`${this.basePath}/Student/UpdateStudent`, student);
+  }
 }

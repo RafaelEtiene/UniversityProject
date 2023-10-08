@@ -9,20 +9,12 @@
   display: inline-block;
 }
 h2{
-  text-align: left;
-  margin-left: 100px;
+  margin-left: 150px;
 }
 
-.template{
+.btnForm {
   display: flex;
-  flex-direction: column;
-  justify-items: end;
-  width: 500px;
-}
-
-.save {
-  width: 100px;
-  position: relative;
+  flex-direction: row;
 }
 
 .datatable {
