@@ -1,33 +1,25 @@
 <div class="row infoStudent">
-  <div class="col-sm-2">
-    <div class="card text-white bg-info mb-3">
+  <div class="col-sm">
+    <div class="card text-white bg-primary mb-3 cards">
       <div class="card-header">Students</div>
       <div class="card-body" id="numbers">
-        <h2 class="card-title">22</h2>
+        <h2 class="card-title">{{studentsInfo.studentsCount}}</h2>
       </div>
     </div>
   </div>
-  <div class="col-sm-2">
-    <div class="card text-white bg-info mb-3">
+  <div class="col-sm">
+    <div class="card text-white bg-warning mb-3">
       <div class="card-header">Student in last month</div>
       <div class="card-body">
-        <h2 class="card-title">10</h2>
+        <h2 class="card-title">{{studentsInfo.lastRegisteredStudents}}</h2>
         </div>
     </div>
   </div>
-  <div class="col-sm-2">
-    <div class="card text-white bg-info mb-3">
-      <div class="card-header">Revenue in last month</div>
-      <div class="card-body">
-        <h2 class="card-title">R$2000,00</h2>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-2">
+  <div class="col-sm">
     <div class="card text-white bg-info mb-3" >
       <div class="card-header">Course in trend</div>
-      <div class="card-body" style="padding-bottom: 10px;">
-        <h2 class="card-title">Administração</h2>
+      <div class="card-body ">
+        <h2 class="card-title cardCourse">{{studentsInfo.popularCourse}}</h2>
       </div>
     </div>
   </div>

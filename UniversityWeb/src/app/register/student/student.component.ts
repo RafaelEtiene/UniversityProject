@@ -20,8 +20,6 @@ export class StudentComponent implements OnInit {
   initialDate: Date = null!;
   finalDate: Date = null!;
   courses: CourseViewModel[] = [];
-  courseSelected: number = null!;
-  genderSelected: string = "";
   showTemplate: boolean = false;
   student: StudentViewModel = null!;
 
@@ -48,6 +46,7 @@ export class StudentComponent implements OnInit {
       }
     );    
   }
+
   public getAllCourses(){
     return this.courseService.GetAllCourses()
     .subscribe(result => {

@@ -1,17 +1,24 @@
 * {
-  left: 12.5%;
+  left: 6%;
 }
 
 .infoStudent{
-  margin-left: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+}
+
+.cards{
+  margin: 10px;
+}
+.cardCourse {
+  font-size: .6rem;
 }
 
 .card{
   width: 200px;
   height: 110px;
-}
-
-#numbers {
+  margin: auto;
 }
 
 h1 {

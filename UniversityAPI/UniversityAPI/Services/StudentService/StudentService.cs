@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using UniversityAPI.Data;
 using UniversityAPI.Models;
 using UniversityAPI.Models.ViewModel;
@@ -175,14 +176,26 @@ namespace UniversityAPI.Services.StudentService
         {
             try
             {
-                var studentsCount = await _context.Students.CountAsync();
-                var lastRegisteredCount = await _context.Students.Where(s => s.RegistrationDate.Month == DateTime.Now.Month).CountAsync();
+                var students = await _context.Students.ToListAsync();
+                var courses = await _context.Courses.ToListAsync();
+
+                var popularCourse = (
+                    from c in courses
+                    join s in students on c.IdCourse equals s.IdCourse
+                    group s by s.IdCourse into grouped
+                    orderby grouped.Count() descending
+                    select grouped.Key)
+                    .FirstOrDefault();
+
+                var course = GetCourseByObject(popularCourse);
+
 
                 return new StudentsAnalyticsInfo
                 {
-                    StudentsCount = studentsCount,
-                    LastRegisteredStudents = lastRegisteredCount
-                };
+                    StudentsCount = students.Count(),
+                    LastRegisteredStudents = students.Where(s => s.RegistrationDate.Month == DateTime.Now.Month).Count(),
+                    PopularCourse = course.Result.Name
+            };
             }
             catch
             {
@@ -190,5 +203,16 @@ namespace UniversityAPI.Services.StudentService
             }
         }
 
+        private async Task<Course> GetCourseByObject(int idCourse)
+        {
+            var result = await _context.Courses.Where(c => c.IdCourse == idCourse).SingleAsync();
+
+            if (!(result is null))
+                return result;
+            else
+            {
+                throw new Exception("This course don't exists");
+            }
+        }
     }
 }

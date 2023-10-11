@@ -4,5 +4,6 @@
     {
         public int StudentsCount { get; set; }
         public int LastRegisteredStudents { get; set; }
+        public string PopularCourse { get; set; }
     }
 }

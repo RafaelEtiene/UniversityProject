@@ -3,14 +3,14 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>University</mat-toolbar>
+    <mat-toolbar style="font-weight: 900;">University</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/dashboard">Dashboard</a>
-      <a mat-list-item [matMenuTriggerFor]="register">Register</a>
-      <mat-menu #register="matMenu">
-        <a mat-menu-item href="/register/student">Student</a>
-        <a mat-menu-item href="/register/teacher">Teacher</a>
-        <a mat-menu-item href="/register/course">Course</a>
+      <a mat-list-item class="text-white" href="/dashboard">Dashboard</a>
+      <a mat-list-item [matMenuTriggerFor]="register" class="navList">Register</a>
+      <mat-menu class="navList" #register="matMenu">
+        <a mat-menu-item class="navList" href="/register/student">Student</a>
+        <a mat-menu-item class="navList" href="/register/teacher">Teacher</a>
+        <a mat-menu-item class="navList" href="/register/course">Course</a>
       </mat-menu>
     </mat-nav-list>
   </mat-sidenav>

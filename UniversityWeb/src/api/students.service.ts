@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StudentViewModel } from '../viewmodel/StudentViewModel';
 import { FilterViewModel } from 'src/viewmodel/FilterViewModel';
+import { StudentsAnalyticsViewModel } from 'src/viewmodel/StudentsAnalyticsInfoViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,9 @@ export class StudentsService {
 
   public UpdateStudent(student: StudentViewModel) : Observable<any>{
     return this.httpClient.put<any>(`${this.basePath}/Student/UpdateStudent`, student);
+  }
+
+  public GetStudentsAnalyticsInfo() : Observable<StudentsAnalyticsViewModel> {
+    return this.httpClient.get<StudentsAnalyticsViewModel>(`${this.basePath}/Student/GetStudentsAnalyticsInfo`);
   }
 }
