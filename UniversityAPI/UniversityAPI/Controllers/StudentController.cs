@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using UniversityAPI.Models;
 using UniversityAPI.Models.ViewModel;
+using UniversityAPI.Services.ExportExcelService;
 using UniversityAPI.Services.StudentService;
 
 namespace UniversityAPI.Controllers
@@ -10,9 +12,11 @@ namespace UniversityAPI.Controllers
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
-        public StudentController(IStudentService studentService)
+        private readonly IExportExcelService _exportExcelService;
+        public StudentController(IStudentService studentService, IExportExcelService exportExcelService)
         {
             _studentService = studentService;
+            _exportExcelService = exportExcelService;
         }
 
         [HttpGet]
@@ -102,6 +106,33 @@ namespace UniversityAPI.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("ExportStudentsDataToExcel")]
+        public async Task<IActionResult> ExportStudentsDataToExcel()
+        {
+            try
+            {
+                var excelStream = await _exportExcelService.ExportStudentsDataToExcel();
+
+                var contentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = "example.xlsx"
+                };
+                Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
+                Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
+
+                excelStream.Seek(0, SeekOrigin.Begin);
+
+                return File(excelStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "example.xlsx");
+
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
     }
