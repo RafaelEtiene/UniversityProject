@@ -89,4 +89,18 @@ export class StudentComponent implements OnInit {
     this.showTemplate = false;
     this.getAllCourses();
   }
+
+  public exportStudentsToExcel() {
+    this.studentService.ExportStudentsToExcel().subscribe((data: ArrayBuffer) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Students.xlsx';
+      link.click();
+
+      window.URL.revokeObjectURL(url);
+    });
+  }
 }

@@ -47,4 +47,8 @@ export class StudentsService {
   public GetStudentsAnalyticsInfo() : Observable<StudentsAnalyticsViewModel> {
     return this.httpClient.get<StudentsAnalyticsViewModel>(`${this.basePath}/Student/GetStudentsAnalyticsInfo`);
   }
+
+  public ExportStudentsToExcel(): Observable<ArrayBuffer> {
+    return this.httpClient.get(`${this.basePath}/Student/ExportStudentsDataToExcel`, { responseType: 'arraybuffer' } as { responseType: 'arraybuffer' });
+  }
 }

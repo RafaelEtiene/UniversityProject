@@ -119,7 +119,7 @@ namespace UniversityAPI.Controllers
 
                 var contentDisposition = new ContentDispositionHeaderValue("attachment")
                 {
-                    FileName = "example.xlsx"
+                    FileName = "Students.xlsx"
                 };
                 Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
                 Response.Headers.Add("X-Content-Type-Options", "nosniff");
@@ -127,7 +127,7 @@ namespace UniversityAPI.Controllers
 
                 excelStream.Seek(0, SeekOrigin.Begin);
 
-                return File(excelStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "example.xlsx");
+                return File(excelStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Students.xlsx");
 
             }
             catch(Exception e)

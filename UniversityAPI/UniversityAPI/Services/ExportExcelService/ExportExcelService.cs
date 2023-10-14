@@ -21,7 +21,6 @@ namespace UniversityAPI.Services.ExportExcelService
             {
                 var students = await _context.Students.ToListAsync();
 
-
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 using (var excel = new ExcelPackage())
