@@ -50,7 +50,7 @@
               <td>{{student.email}}</td>
               <td>
                 <button class="btn btn-info" (click)="getStudentById(student.idStudent)">Update</button>
-                <button class="btn btn-info">Delete</button>
+                <button class="btn btn-danger" (click)="deleteStudent(student.idStudent)">Delete</button>
               </td>
             </tr>
           </tbody>

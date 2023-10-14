@@ -48,7 +48,7 @@ namespace UniversityAPI.Services.ExportExcelService
                     foreach (var student in students)
                     {
                         workSheet.Cells[studentIndex, 1].Value = student.IdStudent;
-                        workSheet.Cells[studentIndex, 2].Value = student.RegistrationDate;
+                        workSheet.Cells[studentIndex, 2].Value = student.RegistrationDate.ToString("dd/MM/yyyy HH:mm:ss");
                         workSheet.Cells[studentIndex, 3].Value = student.Name;
                         workSheet.Cells[studentIndex, 4].Value = student.Age;
                         workSheet.Cells[studentIndex, 5].Value = student.Gender;

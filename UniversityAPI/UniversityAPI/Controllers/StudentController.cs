@@ -81,7 +81,7 @@ namespace UniversityAPI.Controllers
 
         [HttpDelete]
         [Route("DeleteStudent/{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
+        public async Task<IActionResult> DeleteStudent(uint id)
         {
             try
             {

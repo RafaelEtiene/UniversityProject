@@ -153,7 +153,7 @@ namespace UniversityAPI.Services.StudentService
         }
 
 
-        public async Task DeleteStudent(int id)
+        public async Task DeleteStudent(uint id)
         {
             try
             {

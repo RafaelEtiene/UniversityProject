@@ -90,6 +90,11 @@ export class StudentComponent implements OnInit {
     this.getAllCourses();
   }
 
+  public deleteStudent(idStudent: number) {
+    this.studentService.DeleteStudent(idStudent).subscribe();
+    this.getAllStudents();
+  }
+
   public exportStudentsToExcel() {
     this.studentService.ExportStudentsToExcel().subscribe((data: ArrayBuffer) => {
       const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });

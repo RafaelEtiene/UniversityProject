@@ -36,6 +36,10 @@ export class StudentsService {
     return this.httpClient.post<any>(`${this.basePath}/Student/InsertStudent`, student)
   }
 
+  public DeleteStudent(idStudent: number) : Observable<any> {
+    return this.httpClient.delete(`${this.basePath}/Student/DeleteStudent/${idStudent}`)
+  }
+
   public GetStudentById(idStudent: number) : Observable<StudentViewModel>{
     return this.httpClient.get<StudentViewModel>(`${this.basePath}/Student/GetSingleStudent/${idStudent}`)
   }

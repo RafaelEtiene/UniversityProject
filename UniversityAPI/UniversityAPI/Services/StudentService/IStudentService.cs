@@ -14,7 +14,7 @@ namespace UniversityAPI.Services.StudentService
 
         Task UpdateStudent(StudentViewModel request);
 
-        Task DeleteStudent(int id);
+        Task DeleteStudent(uint id);
         Task<StudentsAnalyticsInfo> GetStudentsAnalyticsInfo();
     }
 }
